@@ -19,6 +19,10 @@ namespace SHUberTrips.Controllers
         {
             return View();
         }
+        public ActionResult AcceptDecline()
+        {
+            return View();
+        }
     }
     
 }
