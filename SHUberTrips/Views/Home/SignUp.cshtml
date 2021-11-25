@@ -1,0 +1,123 @@
+﻿@model SHUberTrips.Models.SHUberCustomer
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignUp</title>
+    <style>
+        #signup-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 10px solid #ccc;
+            padding: 10px 10px;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div id="signup-div">
+        <h4>UserModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(Model => Model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(Model => Model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(Model => Model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(Model => Model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(Model => Model.Firstname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.Firstname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.Firstname, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(Model => Model.Lastname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.Lastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.Lastname, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(Model => Model.HomeAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.HomeAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.HomeAddress, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(Model => Model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(Model => Model.BankAccountName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.BankAccountName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.BankAccountName, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(Model => Model.SortCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.SortCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.SortCode, "", new { @class = "text-danger" })
+            </div>
+            @Html.LabelFor(Model => Model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(Model => Model.AccountNumber, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+        <a href="~/Views/SHUberDashboard/Dashboard.cshtml">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Register" class="btn btn-default" />
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <label class="label-success">@ViewBag.SuccessMessage</label>"
+        </div>
+    </div>
+
+    @*if (ViewBag.SuccessMessage != null)
+        {
+            <form action="~/Views/Home/EditProf.cshtml" method="get">
+                <button type="reset" value="Reset">Bubble Up</button>
+
+            </form>
+        }*@
+
+    <div style="text-decoration:">
+        <a href="@Url.Action("LoginPage","Home")">Login</a>
+    </div>
+
+
+}
+
+
+<div>
+        @Html.ActionLink("Continue to the bubble", "ViewUser")
+    </div>
+

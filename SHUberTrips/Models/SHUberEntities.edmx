@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SHUberSpaceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SHUberCustomer">
+          <Key>
+            <PropertyRef Name="SHUberCustomerId" />
+          </Key>
+          <Property Name="SHUberCustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="nchar" MaxLength="100" />
+          <Property Name="Lastname" Type="nchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" />
+          <Property Name="HomeAddress" Type="nchar" MaxLength="100" />
+          <Property Name="EmailAddress" Type="nchar" MaxLength="100" />
+          <Property Name="BankAccountName" Type="nchar" MaxLength="100" />
+          <Property Name="SortCode" Type="int" />
+          <Property Name="AccountNumber" Type="int" />
+          <Property Name="Password" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SHUberDriversSpace">
+          <Key>
+            <PropertyRef Name="SHUberDriversID" />
+          </Key>
+          <Property Name="SHUberDriversID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DriverFirstname" Type="nchar" MaxLength="100" />
+          <Property Name="DriverLastname" Type="nchar" MaxLength="100" />
+          <Property Name="DriverRegNumber" Type="nchar" MaxLength="10" />
+          <Property Name="DriverPassword" Type="nchar" MaxLength="50" />
+          <Property Name="DriverEmailAddress" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SHUberJourney">
+          <Key>
+            <PropertyRef Name="SHUberId" />
+          </Key>
+          <Property Name="SHUberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartLocation" Type="geography" />
+          <Property Name="DropOffLocation" Type="geography" />
+          <Property Name="JourneyTime" Type="time" Precision="7" />
+          <Property Name="JourneyCost" Type="money" />
+          <Property Name="SHUberCustomerID" Type="int" Nullable="false" />
+          <Property Name="DriverID" Type="int" />
+        </EntityType>
+        <Association Name="FK_SHUberJourney_SHUberCustomer">
+          <End Role="SHUberCustomer" Type="Self.SHUberCustomer" Multiplicity="1" />
+          <End Role="SHUberJourney" Type="Self.SHUberJourney" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHUberCustomer">
+              <PropertyRef Name="SHUberCustomerId" />
+            </Principal>
+            <Dependent Role="SHUberJourney">
+              <PropertyRef Name="SHUberCustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHUberJourney_SHUberDriverSpace">
+          <End Role="SHUberDriversSpace" Type="Self.SHUberDriversSpace" Multiplicity="0..1" />
+          <End Role="SHUberJourney" Type="Self.SHUberJourney" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHUberDriversSpace">
+              <PropertyRef Name="SHUberDriversID" />
+            </Principal>
+            <Dependent Role="SHUberJourney">
+              <PropertyRef Name="DriverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SHUberSpaceModelStoreContainer">
+          <EntitySet Name="SHUberCustomer" EntityType="Self.SHUberCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHUberDriversSpace" EntityType="Self.SHUberDriversSpace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SHUberJourney" EntityType="Self.SHUberJourney" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SHUberJourney_SHUberCustomer" Association="Self.FK_SHUberJourney_SHUberCustomer">
+            <End Role="SHUberCustomer" EntitySet="SHUberCustomer" />
+            <End Role="SHUberJourney" EntitySet="SHUberJourney" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHUberJourney_SHUberDriverSpace" Association="Self.FK_SHUberJourney_SHUberDriverSpace">
+            <End Role="SHUberDriversSpace" EntitySet="SHUberDriversSpace" />
+            <End Role="SHUberJourney" EntitySet="SHUberJourney" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SHUberSpaceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SHUberCustomer">
+          <Key>
+            <PropertyRef Name="SHUberCustomerId" />
+          </Key>
+          <Property Name="SHUberCustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="HomeAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="BankAccountName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="SortCode" Type="Int32" />
+          <Property Name="AccountNumber" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="SHUberJourneys" Relationship="Self.FK_SHUberJourney_SHUberCustomer" FromRole="SHUberCustomer" ToRole="SHUberJourney" />
+        </EntityType>
+        <EntityType Name="SHUberDriversSpace">
+          <Key>
+            <PropertyRef Name="SHUberDriversID" />
+          </Key>
+          <Property Name="SHUberDriversID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DriverFirstname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="DriverLastname" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="DriverRegNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DriverPassword" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="DriverEmailAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="SHUberJourneys" Relationship="Self.FK_SHUberJourney_SHUberDriverSpace" FromRole="SHUberDriversSpace" ToRole="SHUberJourney" />
+        </EntityType>
+        <EntityType Name="SHUberJourney">
+          <Key>
+            <PropertyRef Name="SHUberId" />
+          </Key>
+          <Property Name="SHUberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartLocation" Type="Geography" />
+          <Property Name="DropOffLocation" Type="Geography" />
+          <Property Name="JourneyTime" Type="Time" Precision="7" />
+          <Property Name="JourneyCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SHUberCustomerID" Type="Int32" Nullable="false" />
+          <Property Name="DriverID" Type="Int32" />
+          <NavigationProperty Name="SHUberCustomer" Relationship="Self.FK_SHUberJourney_SHUberCustomer" FromRole="SHUberJourney" ToRole="SHUberCustomer" />
+          <NavigationProperty Name="SHUberDriversSpace" Relationship="Self.FK_SHUberJourney_SHUberDriverSpace" FromRole="SHUberJourney" ToRole="SHUberDriversSpace" />
+        </EntityType>
+        <Association Name="FK_SHUberJourney_SHUberCustomer">
+          <End Role="SHUberCustomer" Type="Self.SHUberCustomer" Multiplicity="1" />
+          <End Role="SHUberJourney" Type="Self.SHUberJourney" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHUberCustomer">
+              <PropertyRef Name="SHUberCustomerId" />
+            </Principal>
+            <Dependent Role="SHUberJourney">
+              <PropertyRef Name="SHUberCustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SHUberJourney_SHUberDriverSpace">
+          <End Role="SHUberDriversSpace" Type="Self.SHUberDriversSpace" Multiplicity="0..1" />
+          <End Role="SHUberJourney" Type="Self.SHUberJourney" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SHUberDriversSpace">
+              <PropertyRef Name="SHUberDriversID" />
+            </Principal>
+            <Dependent Role="SHUberJourney">
+              <PropertyRef Name="DriverID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SHUberSpaceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SHUberCustomers" EntityType="Self.SHUberCustomer" />
+          <EntitySet Name="SHUberDriversSpaces" EntityType="Self.SHUberDriversSpace" />
+          <EntitySet Name="SHUberJourneys" EntityType="Self.SHUberJourney" />
+          <AssociationSet Name="FK_SHUberJourney_SHUberCustomer" Association="Self.FK_SHUberJourney_SHUberCustomer">
+            <End Role="SHUberCustomer" EntitySet="SHUberCustomers" />
+            <End Role="SHUberJourney" EntitySet="SHUberJourneys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SHUberJourney_SHUberDriverSpace" Association="Self.FK_SHUberJourney_SHUberDriverSpace">
+            <End Role="SHUberDriversSpace" EntitySet="SHUberDriversSpaces" />
+            <End Role="SHUberJourney" EntitySet="SHUberJourneys" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SHUberSpaceModelStoreContainer" CdmEntityContainer="SHUberSpaceEntities">
+          <EntitySetMapping Name="SHUberCustomers">
+            <EntityTypeMapping TypeName="SHUberSpaceModel.SHUberCustomer">
+              <MappingFragment StoreEntitySet="SHUberCustomer">
+                <ScalarProperty Name="SHUberCustomerId" ColumnName="SHUberCustomerId" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="HomeAddress" ColumnName="HomeAddress" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="BankAccountName" ColumnName="BankAccountName" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHUberDriversSpaces">
+            <EntityTypeMapping TypeName="SHUberSpaceModel.SHUberDriversSpace">
+              <MappingFragment StoreEntitySet="SHUberDriversSpace">
+                <ScalarProperty Name="SHUberDriversID" ColumnName="SHUberDriversID" />
+                <ScalarProperty Name="DriverFirstname" ColumnName="DriverFirstname" />
+                <ScalarProperty Name="DriverLastname" ColumnName="DriverLastname" />
+                <ScalarProperty Name="DriverRegNumber" ColumnName="DriverRegNumber" />
+                <ScalarProperty Name="DriverPassword" ColumnName="DriverPassword" />
+                <ScalarProperty Name="DriverEmailAddress" ColumnName="DriverEmailAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SHUberJourneys">
+            <EntityTypeMapping TypeName="SHUberSpaceModel.SHUberJourney">
+              <MappingFragment StoreEntitySet="SHUberJourney">
+                <ScalarProperty Name="SHUberId" ColumnName="SHUberId" />
+                <ScalarProperty Name="StartLocation" ColumnName="StartLocation" />
+                <ScalarProperty Name="DropOffLocation" ColumnName="DropOffLocation" />
+                <ScalarProperty Name="JourneyTime" ColumnName="JourneyTime" />
+                <ScalarProperty Name="JourneyCost" ColumnName="JourneyCost" />
+                <ScalarProperty Name="SHUberCustomerID" ColumnName="SHUberCustomerID" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

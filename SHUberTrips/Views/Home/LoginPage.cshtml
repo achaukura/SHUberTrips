@@ -1,0 +1,109 @@
+﻿@model SHUberTrips.Models.SHUberCustomer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 10px solid #ccc;
+            padding: 10px 10px;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
+        {
+        <table>
+            <tr>
+                <td>
+                </td>
+                <td style="text-decoration:underline">
+                    SHUber
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Login
+                </td>
+                <td style="text-decoration:">
+                    <a href="@Url.Action("SignUp","Home")">SignUp</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.EmailAddress)
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    @Html.EditorFor(model => model.EmailAddress)
+                </td>
+            </tr>
+            <tr>
+                <td class="field-validation-error">
+                    @Html.ValidationMessageFor(model => model.EmailAddress)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Password)
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    @Html.EditorFor(model => model.Password)
+                </td>
+
+            </tr>
+            <tr>
+
+                <td class="field-validation-error">
+                    @Html.ValidationMessageFor(model => model.EmailAddress)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class=" = field-validation-error">@Html.DisplayFor(model => model.ErrorMessage)</label>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" name="name" value="Login" />
+                    <input type="reset" name="name" value="Clear" />
+
+
+                </td>
+            </tr>
+            <a href="@Url.Action("Dashboard","SHUberDashboard")">SHUber UP!</a>
+
+
+        </table>
+
+        }
+
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
