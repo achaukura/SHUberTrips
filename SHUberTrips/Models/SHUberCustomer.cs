@@ -11,7 +11,7 @@ namespace SHUberTrips.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class SHUberCustomer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace SHUberTrips.Models
         {
             this.SHUberJourneys = new HashSet<SHUberJourney>();
         }
-    
+
         public int SHUberCustomerId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
@@ -32,7 +32,7 @@ namespace SHUberTrips.Models
         public string Password { get; set; }
 
         public string ConfirmPassword { get; set; }
-        public string ErrorMessage { get; set;  }
+        public string ErrorMessage { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SHUberJourney> SHUberJourneys { get; set; }

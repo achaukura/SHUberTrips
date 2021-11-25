@@ -15,8 +15,8 @@ namespace SHUberTrips.Models
     public partial class SHUberJourney
     {
         public int SHUberId { get; set; }
-        public System.Data.Entity.Spatial.DbGeography StartLocation { get; set; }
-        public System.Data.Entity.Spatial.DbGeography DropOffLocation { get; set; }
+        public string StartLocation { get; set; }
+        public string DropOffLocation { get; set; }
         public Nullable<System.TimeSpan> JourneyTime { get; set; }
         public Nullable<decimal> JourneyCost { get; set; }
         public int SHUberCustomerID { get; set; }

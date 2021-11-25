@@ -15,5 +15,10 @@ namespace SHUberTrips.Controllers
         {
             return View();
         }
+       public ActionResult BookTrip()
+        {
+            return View();
+        }
     }
+    
 }

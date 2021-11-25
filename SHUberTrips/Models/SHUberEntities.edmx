@@ -36,8 +36,8 @@
             <PropertyRef Name="SHUberId" />
           </Key>
           <Property Name="SHUberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StartLocation" Type="geography" />
-          <Property Name="DropOffLocation" Type="geography" />
+          <Property Name="StartLocation" Type="nchar" MaxLength="1000" />
+          <Property Name="DropOffLocation" Type="nchar" MaxLength="1000" />
           <Property Name="JourneyTime" Type="time" Precision="7" />
           <Property Name="JourneyCost" Type="money" />
           <Property Name="SHUberCustomerID" Type="int" Nullable="false" />
@@ -117,8 +117,8 @@
             <PropertyRef Name="SHUberId" />
           </Key>
           <Property Name="SHUberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StartLocation" Type="Geography" />
-          <Property Name="DropOffLocation" Type="Geography" />
+          <Property Name="StartLocation" Type="String" MaxLength="1000" Unicode="true" FixedLength="true" />
+          <Property Name="DropOffLocation" Type="String" MaxLength="1000" Unicode="true" FixedLength="true" />
           <Property Name="JourneyTime" Type="Time" Precision="7" />
           <Property Name="JourneyCost" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="SHUberCustomerID" Type="Int32" Nullable="false" />
